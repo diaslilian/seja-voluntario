@@ -13,4 +13,5 @@ Atuar como voluntário traz benefícios para você, para as pessoas ao seu redor
 <br><br>
 
 <hr>
-<h4 align="center"> Created by Lilian Dias :wave: [Hi-5!](https://www.linkedin.com/in/dias-lilian/) </h4>
+
+Created by Lilian Dias :wave: [Hi-5!](https://www.linkedin.com/in/dias-lilian/) 
