@@ -1,0 +1,20 @@
+{
+  "name": "seja-voluntario",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/diaslilian/seja-voluntario.git",
+  "author": "diaslilian <lilian.dias25@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "hbs": "^4.1.0"
+  },
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "sucrase": "^3.12.1"
+  }
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Busque Vagas</title>
+
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header row">
+        <a href="/">
+          <img src="../assets/images/logo.png" alt="Logo Seja Voluntario" />
+
+          <h1 class="text-red text-shadow">Seja Voluntário</h1>
+        </a>
+      </header>
+
+      <section class="notices row">
+        <div class="form form-search">
+          <h2 class="text-blue">Busque uma vaga de voluntariado</h2>
+          <form class="flex" onsubmit="return validateSearch(this)">
+            <input
+              type="text"
+              name="key"
+              class="col-half"
+              value="{{key}}"
+              placeholder="O que deseja buscar..."
+            />
+
+            <button type="submit" class="btn btn-blue">Buscar</button>
+          </form>
+        </div>
+
+        <div class="grid grid-col-3">
+          {{#if vagas}} {{#each vagas}}
+          <article class="notice">
+            <h4>{{this.titulo}}</h4>
+            <p class="city"><strong>{{this.cidade}}</strong></p>
+            <p>
+              {{this.descricao}}
+            </p>
+            <p>
+              <a class="btn btn-red" href="/anuncio/{{this.id}}"> Saiba mais</a>
+            </p>
+          </article>
+          {{/each}} {{else}}
+          <p>Nenhuma vaga encontrada.</p>
+          {{/if}}
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p><strong>Seja Voluntário</strong> - Com ❤ Lilian Dias.</p>
+      </footer>
+    </main>
+
+    <script src="../App.js"></script>
+  </body>
+</html>
