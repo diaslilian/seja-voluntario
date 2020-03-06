@@ -18,15 +18,15 @@
         </a>
       </header>
 
-      <section class="notices row">
+      <section class="notices row" id="app">
         <div class="form form-search">
           <h2 class="text-blue">Busque uma vaga de voluntariado</h2>
-          <form class="flex" onsubmit="return validateSearch(this)">
+          <form class="flex" @submit.prevent="buscar">
             <input
               type="text"
               name="key"
               class="col-half"
-              value="{{key}}"
+              v-model="key"
               placeholder="O que deseja buscar..."
             />
 
@@ -34,22 +34,20 @@
           </form>
         </div>
 
-        <div class="grid grid-col-3">
-          {{#if vagas}} {{#each vagas}}
-          <article class="notice">
-            <h4>{{this.titulo}}</h4>
-            <p class="city"><strong>{{this.cidade}}</strong></p>
+        <div class="grid grid-col-3" v-if="vagas">
+          <article v-for="vaga in vagas" class="notice">
+            <h4>\{{vaga.titulo}}</h4>
+            <p class="city"><strong>\{{vaga.cidade}}</strong></p>
             <p>
-              {{this.descricao}}
+              \{{vaga.descricao}}
             </p>
             <p>
-              <a class="btn btn-red" href="/anuncio/{{this.id}}"> Saiba mais</a>
+              <a class="btn btn-red" :href="'/anuncio/'+vaga.id"> Saiba mais</a>
             </p>
           </article>
-          {{/each}} {{else}}
-          <p>Nenhuma vaga encontrada.</p>
-          {{/if}}
         </div>
+
+        <p v-else>Nenhuma vaga encontrada.</p>
       </section>
 
       <footer class="footer">
@@ -57,6 +55,27 @@
       </footer>
     </main>
 
-    <script src="../App.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: () => ({
+          vagas: null,
+          key: ""
+        }),
+        methods: {
+          async buscar() {
+            try {
+              const response = await axios.get(`/api/busca?key=${this.key}`);
+              this.vagas = response.data;
+            } catch (err) {
+              console.error(err);
+            }
+          }
+        }
+      });
+    </script>
   </body>
 </html>
